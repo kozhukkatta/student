@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+  <title>Auth Table</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+ 
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <style>
+    .regis{
+        margin-left: 25vw;
+        margin-right: 25vw;
+        background-color:rgba(0,0,0,0.5);
+        border-radius:3vw;
+    }
+    .abou{
+      margin-top: 15vw;
+      margin-left: 45vw;
+    }
+    .container{
+      margin-left:5vw;
+    }
+    body{
+        background-color: rgb(82, 82, 190);
+      font-family: 'Times New Roman', Times, serif ;
+    }
+    .hom{
+      font-size : xx-large ;
+      margin:20vw
+    }
+    a{
+        color: red;
+        font-size: 1.7vw;
+
+    }
+    .container{
+        background-color: rgba(0, 0, 0,0.5);
+        border-radius: 2vw;
+        padding-top: 3vw;
+        padding-bottom: 2vw;
+        width: 40vw;
+        margin-top: 5vw;
+    }
+  </style>
+  
+</head>
+<body style="background-image: url('{% static "img/student.jpg" %}'); background-repeat:no-repeat; background-size:cover;">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary nav-pills bg-white">
+        <div class="container-fluid">
+         
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link " aria-current="page" href="{% url 'home' %}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="{% url 'course' %}">Add Course</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="{% url 'student' %}">Add Student</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'details' %}">Show Details</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'cour_det' %}">Course Details</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="{% url 'reg' %}">Registration</a>
+              </li>
+             
+          </div>
+        </div>
+      </nav>
+      {% block content %}
+      <div>
+        <div class="container text-center">
+            <h3 class="text-white">Course Details</h3>
+            <form action="{% url 'add_student' %}" method="POST">
+                {% csrf_token %}
+            <input type="text" name="sname" id="sname" class="form-control" placeholder="Student Name" required><br>
+            <textarea name="address" id="" cols="30" rows="3" class="form-control"placeholder="Student address"></textarea><br>
+            <input type="number" name="age" id="age" class="form-control" placeholder="Age" required><br>
+            <!-- <input type="text" name="address" id="address" class="form-control" placeholder="Student address" required><br> -->
+            <input type="date" name="jdate" id="jdate" class="form-control" placeholder="Join Date" required><br>
+            <select name="sel" id="sel" class="form-control">
+                {% for c in courses  %}
+                <option value="{{c.id}}">{{c.course_name}}</option>
+                {% endfor %}
+            </select><br>
+            <input type="submit" name="submit" class=" btn btn-success" id="">
+        </form>
+        </div>
+    </div>     
+      {% endblock %}
+</body>
+</html>

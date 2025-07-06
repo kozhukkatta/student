@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+  <title>Auth Table</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+ 
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <style>
+    body{
+      font-family: 'Times New Roman', Times, serif ;
+    }
+    a{
+        color: black;
+        font-size: 1.7vw;
+    }
+    .container{
+      margin-left:50vw;
+      margin-top:20vw;
+      font-size:10vw;
+      color: white;
+    }
+  </style>
+  
+</head>
+<body style="background-image: url('{% static "img/home.jpg" %}'); background-repeat:no-repeat; background-size:cover;">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary nav-pills bg-white">
+        <div class="container-fluid">
+         
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'course' %}">Add Course</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'student' %}">Add Student</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'details' %}">Show Details</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'cour_det' %}">Course Details</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="{% url 'reg' %}">Registration</a>
+              </li>
+              
+             
+          </div>
+        </div>
+      </nav>
+      {% block content %}
+      <div class="container">
+        <h1>HOME PAGE</h1>
+      </div>
+      {% endblock %}
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+  <title>Auth Table</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+ 
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <style>
+    body{
+      font-family: 'Times New Roman', Times, serif ;
+    }
+    a{
+        color: black;
+        font-size: 1.7vw;
+    }
+    .card-body{
+      width:30vw;
+      background-color:rgba(0,0,0,0.5);
+      border-radius:1vw;
+      margin-left:30vw;
+      margin-top:5vw;
+      color:white;
+    }
+    
+  </style>
+  
+</head>
+<body style="background-image: url('{% static "img/reg.jpg" %}'); background-repeat:no-repeat; background-size:cover;">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary nav-pills bg-white">
+        <div class="container-fluid">
+         
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link " aria-current="page" href="{% url 'home' %}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'course' %}">Add Course</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'student' %}">Add Student</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'details' %}">Show Details</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'cour_det' %}">Course Details</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="{% url 'reg' %}">Registration</a>
+              </li>
+             
+          </div>
+        </div>
+      </nav>
+      {% block content %}
+      <div class="card-body">
+        <h2 class="text-center">Sign Up</h2>
+       <form action="{% url 'add_stud' %}" method="POST">
+        {% csrf_token %}
+      
+        <div class="was-validated">
+            <div class="form-group">
+                <label for="fname">First Name:</label>
+                <input class="form-control" type="text" name="fname" id="fname" required> 
+                <div class="valid-feedback">Valid</div>
+                <div class="invalid-feedback">Please fill out this field</div>
+            </div>
+            <div class="form-group">
+                <label for="lname">Last Name:</label>
+                <input class="form-control" type="text" name="lname" id="lname" required>
+                <div class="valid-feedback">Valid</div>
+                <div class="invalid-feedback">Please fill out this field</div>
+            </div>
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input class="form-control" type="text" name="age" id="age" required>
+                <div class="valid-feedback">Valid</div>
+                <div class="invalid-feedback">Please fill out this field</div>
+            </div>
+            <div class="form-group">
+                <label for="mob">Mobile Number:</label>
+                <input class="form-control" type="text" name="mob" id="mob" required>
+                <div class="valid-feedback">Valid</div>
+                <div class="invalid-feedback">Please fill out this field</div>
+            </div>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <textarea name="address" id="address" cols="30" rows="3" class="form-control" required></textarea>
+                {% comment %} <input class="form-control" type="text" name="address" id="address" required> {% endcomment %}
+                <div class="valid-feedback">Valid</div>
+                <div class="invalid-feedback">Please fill out this field</div>
+            </div>
+            <div class="form-group">
+                <label for="uname">Username:</label>
+                <input class="form-control" type="text" name="uname" id="uname" required>
+                <div class="valid-feedback">Valid</div>
+                <div class="invalid-feedback">Please fill out this field</div>
+            </div>
+            <div class="form-group">
+                <label for="mail">Email:</label>
+                <input class="form-control" type="mail" name="mail" id="mail" required>
+                <div class="valid-feedback">Valid</div>
+                <div class="invalid-feedback">Please fill out this field</div>
+            </div>
+            <div class="form-group">
+              <label for="jdate">Join Date:</label>
+              <input class="form-control" type="date" name="jdate" id="jdate" required>
+              <div class="valid-feedback">Valid</div>
+              <div class="invalid-feedback">Please fill out this field</div>
+          </div>
+          <div>
+            <select name="sel" id="sel" class="form-control">
+              {% for c in courses  %}
+              <option value="{{c.id}}">{{c.course_name}}</option>
+              {% endfor %}
+          </select>
+          </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input class="form-control" type="password" name="password" id="password" show="*" required>
+                <div class="valid-feedback">Valid</div>
+                <div class="invalid-feedback">Please fill out this field</div>
+            </div>
+            <div class="form-group">
+              <label for="password">Confirm Password:</label>
+              <input class="form-control" type="password" name="cpassword" id="cpassword" required>
+              <div class="valid-feedback">Valid</div>
+              <div class="invalid-feedback">Please fill out this field</div>
+          </div>
+            
+            <div><center>
+                <input type="submit" name="submit" class="btn btn-primary w-100" id=""><br></center>
+                <br>
+            </div>
+            
+        </div>
+       </form>
+      </div> 
+      {% endblock %}
+</body>
+</html>
